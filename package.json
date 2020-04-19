@@ -13,6 +13,7 @@
     "node-sass": "^4.13.1",
     "rollup": "^1.20.0",
     "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-postcss": "^2.8.2",
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^5.1.2",
@@ -22,6 +23,7 @@
   "dependencies": {
     "imask": "^6.0.3",
     "sirv-cli": "^0.4.4",
+    "svelte-material-ui": "^1.0.0-beta.21",
     "svelte-spa-router": "^2.1.0"
   }
 }

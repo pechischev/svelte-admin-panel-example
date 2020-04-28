@@ -2,9 +2,35 @@
 
 :root {
   --mdc-theme-primary: #1A68DE;
+  --act_blue: #1A68DE;
+  --dis_grey: #C4C4C4;
+  --white: #FFFFFF;
+  --txt_content: #2F343D;
+  --border-color-normal: #E0E0E0;
+  --border-color-active: #b6b6b6;
+  --button-normal: #B2BAC5;
+  --button-active: #767b83;
+  --label-color: #696F77;
 }
 
 .wrap {
   max-width: 1440px;
   margin: 0 auto;
+}
+
+.line {
+  width: 100%;
+  max-width: 708px;
+
+  &-1_2 {
+    width: calc(100% / 2);
+  }
+
+  &-1_3 {
+    width: calc(100% / 3);
+  }
+
+  &-1_6 {
+    width: calc(100% / 6);
+  }
 }

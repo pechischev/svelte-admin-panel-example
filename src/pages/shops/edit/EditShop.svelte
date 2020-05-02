@@ -1,7 +1,7 @@
 <script>
   import {BreadCrumbs} from "../../../components/bread-crumbs";
   import {BlockTitle} from "../../../components/block-title";
-  import {OutlineStar} from "../../../components/icons";
+  import {Basket, Lock, OutlineStar} from "../../../components/icons";
   import {Label} from "../../../components/label";
   import {FeedbackItem} from "./feedback-item";
   import {ShopForm} from "../parts";
@@ -62,7 +62,12 @@
   }
 </style>
 
-<BreadCrumbs path={"ВкусноМир"} isEdit={true}/>
+<BreadCrumbs path={"ВкусноМир"}>
+  <div>
+    <Lock />
+    <Basket />
+  </div>
+</BreadCrumbs>
 
 <BlockTitle text="Рейтинг покупателей"/>
 <div class="rate">

@@ -23,6 +23,7 @@
 <style type="text/scss">
   .cards {
     display: flex;
+    flex-wrap: wrap;
   }
 </style>
 

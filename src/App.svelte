@@ -5,7 +5,7 @@
   import { AddShop, EditShop } from "./pages/shops";
 
   const routes = {
-    '/': Company,
+    '/company': Company,
     '/bonus_program': BonusProgram,
     '/shops': Shops,
     '/shops/create': AddShop,

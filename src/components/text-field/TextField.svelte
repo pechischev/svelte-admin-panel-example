@@ -2,7 +2,6 @@
     export let value = "";
     export let className = "";
     export let placeholder = "";
-    export let isRequisites = "false";
 </script>
 
 <style type="text/scss">
@@ -25,15 +24,10 @@
     .text-field:focus {
         outline: none;
     }
-
-    .requisites-style {
-        letter-spacing: 5px;
-    }
 </style>
 
 <input
-    class="text-field {className} {isRequisites === 'true' ? 'requisites-style' : ''}"
+    class="text-field {className}"
     placeholder="{placeholder}"
-    name=""
-    value="{value}"
+    bind:value="{value}"
 />

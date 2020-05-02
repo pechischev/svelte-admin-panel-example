@@ -1,1 +1,1 @@
-export {default as Edit} from './Edit.svelte';
+export {default as EditShop} from './EditShop.svelte';

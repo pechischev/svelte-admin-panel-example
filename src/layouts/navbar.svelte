@@ -5,7 +5,7 @@
 
   const tabs = [
     {
-      path: '/',
+      path: '/company',
       label: 'Моя компания'
     },
     {
@@ -21,7 +21,7 @@
   let activeTab = tabs[0];
 
   location.subscribe((currentLocation) => {
-    activeTab = tabs.find((tab) => tab.path === currentLocation);
+    activeTab = tabs.find((tab) => currentLocation.includes(tab.path));
   });
 
 </script>

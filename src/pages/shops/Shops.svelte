@@ -1,40 +1,37 @@
 <script>
-    import { BlockTitle } from "../../components/block-title";
-    import { ShopCard } from "./shop-card";
+  import {BlockTitle} from "../../components/block-title";
+  import {AddShopCard, InfoShopCard} from "./parts";
 
-    const shops = [
-        {
-            id: ''
-        },
-        {
-            id: '1',
-            logo: "",
-            title: "ВкусноМир",
-            address: "ул. Покупаечная, дом 200",
-            rate: "4.8",
-            category: "Продукты питания"
-        },
-        {
-            id: '2',
-            logo: "Logo",
-            title: "ВкусноМир",
-            address: "ул. Покупаечная, дом 200",
-            rate: "4.8",
-            category: "Продукты питания"
-        },
-    ];
+  const shops = [
+    {
+      id: '1',
+      title: "ВкусноМир",
+      address: "ул. Покупаечная, дом 200",
+      rate: "4.8",
+      category: "Продукты питания"
+    },
+    {
+      id: '2',
+      title: "ВкусноМир",
+      address: "ул. Покупаечная, дом 200",
+      rate: "4.8",
+      category: "Продукты питания"
+    },
+  ];
 </script>
 
 <style type="text/scss">
-    .cards {
-        display: flex;
-    }
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+  }
 </style>
 
-<BlockTitle text="Список магазинов участников" />
+<BlockTitle text="Список магазинов участников"/>
 
 <div class="cards">
+  <AddShopCard />
   {#each shops as item}
-      <ShopCard item={item} />
+    <InfoShopCard item={item}/>
   {/each}
 </div>

@@ -1,14 +1,8 @@
 <script>
     import { pop } from 'svelte-spa-router';
     import ArrowLeft from "../icons/ArrowLeft.svelte";
-    import { Basket, Lock } from "../icons";
 
     export let path;
-    export let isEdit = false;
-
-    const props = $$props;
-
-    console.log(props)
 
     function redirect() {
         pop();
@@ -21,7 +15,6 @@
         justify-content: space-between;
         align-items: center;
         margin: 35px 0;
-
     }
 
     .bread-crumbs div {
@@ -37,16 +30,11 @@
     }
 </style>
 
-<div class="bread-crumbs" on:click={redirect}>
-    <div>
+<div class="bread-crumbs">
+    <div on:click={redirect}>
         <ArrowLeft />
         <p>{path}</p>
     </div>
 
-  {#if isEdit}
-      <div>
-          <Lock />
-          <Basket />
-      </div>
-  {/if}
+  <slot></slot>
 </div>

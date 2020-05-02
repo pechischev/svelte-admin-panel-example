@@ -1,1 +1,1 @@
-export {default as Create} from './Create.svelte';
+export {default as AddShop} from './AddShop.svelte';

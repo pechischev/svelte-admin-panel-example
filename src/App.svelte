@@ -2,15 +2,14 @@
   import Router from 'svelte-spa-router';
   import {Header, Navbar} from './layouts';
   import {Company, BonusProgram, Shops, NotFound} from "./pages";
-  import { Create } from "./pages/shops/create";
-  import { Edit } from "./pages/shops/edit";
+  import { AddShop, EditShop } from "./pages/shops";
 
   const routes = {
     '/': Company,
     '/bonus_program': BonusProgram,
     '/shops': Shops,
-    '/shops/create': Create,
-    '/shops/:id': Edit,
+    '/shops/create': AddShop,
+    '/shops/:id': EditShop,
     '*': NotFound,
   };
 </script>

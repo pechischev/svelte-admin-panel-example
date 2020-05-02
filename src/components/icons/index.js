@@ -6,3 +6,7 @@ export {default as DefaultLogo} from './DefaultLogo.svelte';
 export {default as ArrowLeft} from './DefaultLogo.svelte';
 export {default as Lock} from './Lock.svelte';
 export {default as Basket} from './Basket.svelte';
+export {default as SliderMinus} from './SliderMinus.svelte';
+export {default as SliderPlus} from './SliderPlus.svelte';
+export {default as ArrowRight} from './ArrowRight.svelte';
+export {default as Calendar} from './Calendar.svelte';

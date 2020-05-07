@@ -26,20 +26,12 @@
 
 </script>
 
-<style type="text/scss">
-    .tab-bar {
-
-    }
-
-    .tab {
-
-    }
-
-    .tab-label {
-        letter-spacing: 0;
-        text-transform: capitalize;
-        font: 500 18px/22px "Roboto", sans-serif;
-    }
+<style>
+  .tab-label {
+    letter-spacing: 0;
+    text-transform: capitalize;
+    font: 500 18px/22px "Roboto", sans-serif;
+  }
 </style>
 
 <TabBar className="tab-bar" tabs={tabs} let:tab bind:active={activeTab}>

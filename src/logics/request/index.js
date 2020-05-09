@@ -1,8 +1,7 @@
-import { AxiosRequestManager } from './AxiosRequestManager';
-import {SimpleAuthStrategy} from "./strategy";
+import {AxiosRequestManager} from './AxiosRequestManager';
+import {SimpleAuthStrategy} from './strategy';
 
-// TODO: need get server url from configs
 export const requestManager = AxiosRequestManager.create({
-  baseURL: '',
+  baseURL: process.env.API_URL,
   strategy: new SimpleAuthStrategy(),
 });

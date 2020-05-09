@@ -1,15 +1,6 @@
 import axios from 'axios';
 
 export class AxiosRequestManager {
-  static create(options) {
-    const { baseURL = "", headers, strategy } = options;
-    const manager = new AxiosRequestManager();
-    manager.setBaseUrl(baseURL);
-    manager.setHeaders(headers);
-    manager.setStrategy(strategy);
-    return manager;
-  }
-
   constructor() {
     this._instance = axios.create();
     this._baseUrl = "";
@@ -19,22 +10,31 @@ export class AxiosRequestManager {
     this.init();
   }
 
+  static create(options) {
+    const {baseURL = "", headers, strategy} = options;
+    const manager = new AxiosRequestManager();
+    manager.setBaseUrl(baseURL);
+    manager.setHeaders(headers);
+    manager.setStrategy(strategy);
+    return manager;
+  }
+
   async get(url, options = {}) {
-    return this._instance.get(url, { ...this.getConfig(), ...options });
+    return this._instance.get(url, {...this.getConfig(), ...options});
   }
 
   async post(url, options) {
-    const { data, ...rest } = options;
-    return this._instance.post(url, data, { ...this.getConfig(), ...rest });
+    const {data, ...rest} = options;
+    return this._instance.post(url, data, {...this.getConfig(), ...rest});
   }
 
   async put(url, options) {
-    const { data, ...rest } = options;
-    return this._instance.put(url, data, { ...this.getConfig(), ...rest });
+    const {data, ...rest} = options;
+    return this._instance.put(url, data, {...this.getConfig(), ...rest});
   }
 
   async delete(url, options = {}) {
-    return this._instance.delete(url, { ...this.getConfig(), ...options });
+    return this._instance.delete(url, {...this.getConfig(), ...options});
   }
 
   setHeaders(headers = {}) {
@@ -65,7 +65,7 @@ export class AxiosRequestManager {
   }
 
   onFulfilled(response) {
-    console.info("[RequestManager]", response);
+    console.info('[RequestManager]', response);
     return response;
   }
 

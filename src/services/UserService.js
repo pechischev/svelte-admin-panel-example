@@ -1,6 +1,6 @@
-import {requestManager} from "../logics/request";
-import {JWTAuthStrategy, SimpleAuthStrategy} from "../logics/request/strategy";
-import {user} from "../logics/store/user";
+import {requestManager} from '../logics/request';
+import {JWTAuthStrategy, SimpleAuthStrategy} from '../logics/request/strategy';
+import {user} from '../logics/store/user';
 
 class UserServiceImpl {
   signIn(authData) {

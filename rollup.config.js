@@ -3,11 +3,15 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-/*import {sass as svelte_sass} from 'svelte-preprocess-sass';
-import sass from "rollup-plugin-sass";*/
+import replace from '@rollup/plugin-replace';
 import postcss from 'rollup-plugin-postcss';
+import {config} from 'dotenv';
 
 const production = !process.env.ROLLUP_WATCH;
+
+if (config.error) {
+  throw new Error('Not found `.env` file. Should create this file and restart app');
+}
 
 export default {
 	input: 'src/main.js',
@@ -18,6 +22,15 @@ export default {
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
+    replace({
+      process: JSON.stringify({
+        env: {
+          isProd: production,
+          ...config().parsed // attached the .env config
+        }
+      })
+    }),
+
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,

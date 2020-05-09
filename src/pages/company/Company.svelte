@@ -3,11 +3,13 @@
   import {Label} from "../../components/label";
   import {BlockTitle} from "../../components/block-title";
   import {Button} from "../../components/button";
+  import {CompanyService} from '../../services'
+  import {company as companyStore} from '../../logics/store';
 
-  const data = {};
+  const data = companyStore.getData();
 
   function onSave() {
-
+    CompanyService.updateCompany(data);
   }
 </script>
 
@@ -62,7 +64,7 @@
 </div>
 
 
-<BlockTitle text="Общие сведения о компании"/>
+<BlockTitle text="Реквизиты"/>
 <div class="company-block">
   <Label text="ИНН"/>
   <TextField className="line" placeholder="123456789123" bind:value={data.inn}/>

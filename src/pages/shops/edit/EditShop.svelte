@@ -5,39 +5,20 @@
   import {Label} from "../../../components/label";
   import {FeedbackItem} from "./feedback-item";
   import {ShopForm} from "../parts";
+  import {CompanyService} from "../../../services";
+  import {shops as shopsStore} from '../../../logics/store/shops';
 
-  const feedback = [
-    {
-      author: "Виталик",
-      date: "12.03.20",
-      text: "Сервис просто супер. приду ещё!!!"
-    },
-    {
-      author: "Виталик",
-      date: "12.03.20",
-      text: "Сервис просто супер. приду ещё!!!"
-    },
-    {
-      author: "Виталик",
-      date: "12.03.20",
-      text: "Сервис просто супер. приду ещё!!!"
-    },
-    {
-      author: "Виталик",
-      date: "12.03.20",
-      text: "Сервис просто супер. приду ещё!!!"
-    },
-    {
-      author: "Виталик",
-      date: "12.03.20",
-      text: "Сервис просто супер. приду ещё!!!"
-    },
-  ];
+  export let params = {};
 
+  const shopId = JSON.parse(params.id);
+  const shop = shopsStore.getShop(shopId) || {};
 
   function onEdit(event) {
-    const info = event.detail;
-    console.log(info)
+    CompanyService.updateShop(event.detail);
+  }
+
+  function onRemoveShop() {
+    CompanyService.removeShop(shopId)
   }
 
 </script>
@@ -62,24 +43,32 @@
   }
 </style>
 
-<BreadCrumbs path={"ВкусноМир"}>
+<BreadCrumbs path={shop.name}>
   <div>
     <Lock />
+    <span on:click={() => onRemoveShop()}>
     <Basket />
+    </span>
+
   </div>
 </BreadCrumbs>
 
 <BlockTitle text="Рейтинг покупателей"/>
-<div class="rate">
-  <OutlineStar/>
-  <p>Пользователи пока не оценивали ваш магазин</p>
-</div>
 
-<Label text="Отзывы"/>
-<div class="feedback">
-  {#each feedback as item}
-    <FeedbackItem item={item}/>
-  {/each}
-</div>
+{#if !shop.feedbacks}
+  <div class="rate">
+    <OutlineStar/>
+    <p>Пользователи пока не оценивали ваш магазин</p>
+  </div>
+{/if}
 
-<ShopForm on:onSave={onEdit}/>
+{#if shop.feedbacks}
+  <Label text="Отзывы"/>
+  <div class="feedback">
+    {#each shop.feedbacks as item}
+      <FeedbackItem item={item}/>
+    {/each}
+  </div>
+{/if}
+
+<ShopForm on:onSave={onEdit} shop={shop}/>

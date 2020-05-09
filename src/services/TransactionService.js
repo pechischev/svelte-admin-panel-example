@@ -3,6 +3,10 @@ class TransactionServiceImpl {
 
   }
 
+  refuelAccount() {
+
+  }
+
   fetchTransactions(filters = {}) {
 
   }

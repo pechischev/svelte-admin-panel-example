@@ -1,10 +1,10 @@
 <script>
   import {BreadCrumbs} from "../../../components/bread-crumbs";
+  import {CompanyService} from "../../../services";
   import {ShopForm} from "../parts";
 
   function onCreate(event) {
-    const info = event.detail;
-    console.log(info)
+    CompanyService.createShop(event.detail);
   }
 </script>
 

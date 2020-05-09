@@ -1,52 +1,54 @@
 import {requestManager} from '../logics/request';
+import {company as companyStore, shops as shopsStore} from '../logics/store';
 
 class CompanyServiceImpl {
   fetchCompany() {
     requestManager
-      .get('')
-      .then(() => {
-
+      .get('/company')
+      .then((response) => {
+        companyStore.receive(response.data);
       })
   }
 
-  updateCompany(companyData) {
+  updateCompany(company) {
+    const {id, ...rest} = company;
     requestManager
-      .put('', {data: companyData})
-      .then(() => {
-
+      .put(`/company/${companyStore.getData().id}`, {data: rest})
+      .then((response) => {
+        companyStore.receive(response.data);
       })
   }
 
   fetchShops() {
     requestManager
-      .get('')
-      .then(() => {
-
+      .get('/shops', {params: {companyId: companyStore.getData().id}})
+      .then((response) => {
+        shopsStore.receiveShops(response.data);
       })
   }
 
-  createShop(shopData) {
+  createShop(shop) {
     requestManager
-      .post('', {data: shopData})
-      .then(() => {
-
+      .post('/shops', {data: shop, params: {companyId: companyStore.getData().id}})
+      .then((response) => {
+        shopsStore.addShop(response.data);
       })
   }
 
-  updateShop(shopData) {
-    const {id, ...rest} = shopData;
+  updateShop(shop) {
+    const {id, ...rest} = shop;
     requestManager
-      .put('', {data: rest, params: {shopId: id}})
+      .put(`/shops/${id}`, {data: rest, params: {companyId: companyStore.getData().id}})
       .then(() => {
-
+        shopsStore.editShop(id, shop);
       })
   }
 
   removeShop(shopId) {
     requestManager
-      .put('', {params: {shopId}})
+      .delete(`/shops/${shopId}`, {params: {companyId: companyStore.getData().id}})
       .then(() => {
-
+        shopsStore.removeShop(shopId);
       })
   }
 }

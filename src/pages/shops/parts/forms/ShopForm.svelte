@@ -9,10 +9,10 @@
 
   const dispatch = createEventDispatcher();
 
-  export let info = {};
+  export let shop = {};
 
   function handleSave() {
-    dispatch('onSave', info)
+    dispatch('onSave', shop)
   }
 </script>
 
@@ -51,26 +51,26 @@
 
 <div class="block">
   <Label text="Название магазина"/>
-  <TextField className="line" placeholder="Например: “Незабудка”" bind:value={info.name}/>
+  <TextField className="line" placeholder="Например: “Незабудка”" bind:value={shop.name}/>
 </div>
 
 <div class="block">
   <Label text="Фактический адрес"/>
   <div class="blocks">
-    <TextField className="line-1_2" placeholder="Город" bind:value={info.city}/>
-    <TextField className="line-1_3" placeholder="Улица" bind:value={info.street}/>
-    <TextField className="line-1_6" placeholder="Дом" bind:value={info.house}/>
+    <TextField className="line-1_2" placeholder="Город" bind:value={shop.city}/>
+    <TextField className="line-1_3" placeholder="Улица" bind:value={shop.street}/>
+    <TextField className="line-1_6" placeholder="Дом" bind:value={shop.house}/>
   </div>
 </div>
 
 <div class="block">
   <Label text="Категория товаров/услуг"/>
-  <TextField className="line-1_2" placeholder="Например: Продукты" bind:value={info.category}/>
+  <TextField className="line-1_2" placeholder="Например: Продукты" bind:value={shop.category}/>
 </div>
 
 <div class="block">
   <Label text="Расскажите немного о магазине"/>
-  <TextArea className="line" placeholder="Комментарий" bind:value={info.description}/>
+  <TextArea className="line" placeholder="Комментарий" bind:value={shop.description}/>
 </div>
 
 <div style="margin-top: 20px">

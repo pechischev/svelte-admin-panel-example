@@ -5,6 +5,8 @@
   import {AddShop, EditShop} from './pages/shops';
   import {Bonuses} from './pages/bonus_program/bonuses';
   import {Operations} from './pages/bonus_program/operations';
+  import {onMount} from 'svelte';
+  import {CompanyService} from './services';
 
   const routes = {
     '/company': Company,
@@ -16,6 +18,11 @@
     '/shops/:id': EditShop,
     '*': NotFound,
   };
+
+  onMount(() => {
+    CompanyService.fetchCompany();
+    CompanyService.fetchShops();
+  })
 </script>
 
 <Header/>

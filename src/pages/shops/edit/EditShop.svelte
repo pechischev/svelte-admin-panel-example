@@ -1,4 +1,5 @@
 <script>
+  import {push} from 'svelte-spa-router';
   import {BreadCrumbs} from "../../../components/bread-crumbs";
   import {BlockTitle} from "../../../components/block-title";
   import {Basket, Lock, OutlineStar} from "../../../components/icons";
@@ -11,14 +12,14 @@
   export let params = {};
 
   const shopId = JSON.parse(params.id);
-  const shop = shopsStore.getShop(shopId) || {};
+  const shop = {...shopsStore.getShop(shopId)} || {};
 
   function onEdit(event) {
-    CompanyService.updateShop(event.detail);
+    CompanyService.updateShop(event.detail).then(() => push('/shops/'));
   }
 
   function onRemoveShop() {
-    CompanyService.removeShop(shopId)
+    CompanyService.removeShop(shopId).then(() => push('/shops/'));
   }
 
 </script>
@@ -43,7 +44,7 @@
   }
 </style>
 
-<BreadCrumbs path={shop.name}>
+<BreadCrumbs path={shop.title}>
   <div>
     <Lock />
     <span on:click={() => onRemoveShop()}>

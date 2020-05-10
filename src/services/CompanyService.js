@@ -2,54 +2,36 @@ import {requestManager} from '../logics/request';
 import {company as companyStore, shops as shopsStore} from '../logics/store';
 
 class CompanyServiceImpl {
-  fetchCompany() {
-    requestManager
-      .get('/company')
-      .then((response) => {
-        companyStore.receive(response.data);
-      })
+  async fetchCompany() {
+    const response = await requestManager.get('/company/');
+    companyStore.receive(response.data);
   }
 
-  updateCompany(company) {
+  async updateCompany(company) {
     const {id, ...rest} = company;
-    requestManager
-      .put(`/company/${companyStore.getData().id}`, {data: rest})
-      .then((response) => {
-        companyStore.receive(response.data);
-      })
+    const response = await requestManager.put(`/company/${companyStore.getData().id}`, {data: rest});
+    companyStore.receive(response.data);
   }
 
-  fetchShops() {
-    requestManager
-      .get('/shops', {params: {companyId: companyStore.getData().id}})
-      .then((response) => {
-        shopsStore.receiveShops(response.data);
-      })
+  async fetchShops() {
+    const response = await requestManager.get('/shops/', {params: {companyId: companyStore.getData().id}});
+    shopsStore.receiveShops(response.data);
   }
 
-  createShop(shop) {
-    requestManager
-      .post('/shops', {data: shop, params: {companyId: companyStore.getData().id}})
-      .then((response) => {
-        shopsStore.addShop(response.data);
-      })
+  async createShop(shop) {
+    const response = await requestManager.post('/shops/', {data: shop, params: {companyId: companyStore.getData().id}});
+    shopsStore.addShop(response.data);
   }
 
-  updateShop(shop) {
+  async updateShop(shop) {
     const {id, ...rest} = shop;
-    requestManager
-      .put(`/shops/${id}`, {data: rest, params: {companyId: companyStore.getData().id}})
-      .then(() => {
-        shopsStore.editShop(id, shop);
-      })
+    await requestManager.put(`/shops/${id}`, {data: rest, params: {companyId: companyStore.getData().id}});
+    shopsStore.editShop(id, shop);
   }
 
-  removeShop(shopId) {
-    requestManager
-      .delete(`/shops/${shopId}`, {params: {companyId: companyStore.getData().id}})
-      .then(() => {
-        shopsStore.removeShop(shopId);
-      })
+  async removeShop(shopId) {
+    await requestManager.delete(`/shops/${shopId}`, {params: {companyId: companyStore.getData().id}});
+    shopsStore.removeShop(shopId);
   }
 }
 

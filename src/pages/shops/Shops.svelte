@@ -17,6 +17,6 @@
 <div class="cards">
   <AddShopCard/>
   {#each $shops as shop}
-    <InfoShopCard info={shop}/>
+    <InfoShopCard shop={shop}/>
   {/each}
 </div>

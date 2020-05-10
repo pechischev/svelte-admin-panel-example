@@ -5,12 +5,16 @@
   import {Button} from "../../components/button";
   import {CompanyService} from '../../services'
   import {company as companyStore} from '../../logics/store';
+  import {onDestroy} from 'svelte';
 
-  const data = companyStore.getData();
+  let data = {};
+  const unsubscribe = companyStore.subscribe((company) => data = {...company});
 
   function onSave() {
     CompanyService.updateCompany(data);
   }
+
+  onDestroy(() => unsubscribe())
 </script>
 
 <style type="text/scss">

@@ -1,8 +1,10 @@
 export const shopsMock = [
   {
-    id: '1',
+    id: Date.now(),
     title: "ВкусноМир",
-    address: "ул. Покупаечная, дом 200",
+    city: '',
+    street: "Покупаечная",
+    house: '200',
     rate: "4.8",
     category: "Продукты питания",
     feedbacks: [

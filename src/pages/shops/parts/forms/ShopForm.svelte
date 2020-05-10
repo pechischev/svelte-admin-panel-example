@@ -51,7 +51,7 @@
 
 <div class="block">
   <Label text="Название магазина"/>
-  <TextField className="line" placeholder="Например: “Незабудка”" bind:value={shop.name}/>
+  <TextField className="line" placeholder="Например: “Незабудка”" bind:value={shop.title}/>
 </div>
 
 <div class="block">

@@ -19,4 +19,3 @@ export const shops = {
     return items.find((shop) => shop.id === id);
   }
 };
-

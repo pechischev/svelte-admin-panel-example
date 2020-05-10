@@ -2,21 +2,22 @@
   import {push} from 'svelte-spa-router';
   import { DefaultLogo, Star } from "../../../components/icons";
   import ShopCard from "./ShopCard.svelte"
+  import {getAddress} from '../../../helpers/address';
 
-  export let item = {};
+  export let shop = {};
 </script>
 
-<ShopCard on:redirect={() => push("/shops/" + item.id)}>
+<ShopCard on:redirect={() => push("/shops/" + shop.id)}>
   <div class="shop-info">
     <DefaultLogo />
-    <p class="shop-info__title">{item.title}</p>
-    <p class="shop-info__address">{item.address}</p>
+    <p class="shop-info__title">{shop.title}</p>
+    <p class="shop-info__address">{getAddress(shop)}</p>
     <div class="shop-info__rate rate">
       <Star />
-      <p class="rate__number">{item.rate}</p>
+      <p class="rate__number">{shop.rate || 0}</p>
       <p class="rate__text">рейтинг</p>
     </div>
-    <p class="shop-info__category">{item.category}</p>
+    <p class="shop-info__category">{shop.category}</p>
   </div>
 </ShopCard>
 

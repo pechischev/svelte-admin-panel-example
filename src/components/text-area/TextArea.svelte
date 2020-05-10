@@ -2,7 +2,6 @@
     export let value = "";
     export let className = "";
     export let placeholder = "";
-    export let isRequisites = "false";
 </script>
 
 <style type="text/scss">

@@ -42,7 +42,7 @@ export class MockRequestManager {
   }
 
   setHeaders(headers = {}) {
-    console.log('[MockRequestManager]:headers', headers);
+    console.log('[MockRequestManager]:headers', JSON.stringify(headers));
   }
 
   setBaseUrl(url) {
@@ -50,7 +50,7 @@ export class MockRequestManager {
   }
 
   setStrategy(strategy) {
-    console.log('[MockRequestManager]:strategy', typeof strategy);
+    console.log('[MockRequestManager]:strategy', strategy.constructor.name);
   }
 
   _getKeyRequest(url) {

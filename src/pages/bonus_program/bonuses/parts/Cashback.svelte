@@ -1,6 +1,6 @@
 <script>
-    import { Label } from "../../../components/label";
-    import { SliderMinus, SliderPlus } from "../../../components/icons";
+    import { Label } from "../../../../components/label";
+    import { SliderMinus, SliderPlus } from "../../../../components/icons";
 
     export let percent;
     let value = percent;

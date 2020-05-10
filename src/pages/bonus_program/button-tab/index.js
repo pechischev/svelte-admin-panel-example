@@ -1,1 +1,0 @@
-export {default as ButtonTab} from './ButtonTab.svelte';

@@ -25,6 +25,7 @@
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "imask": "^6.0.3",
+    "qs": "^6.9.4",
     "sirv-cli": "^0.4.4",
     "svelte-material-ui": "^1.0.0-beta.21",
     "svelte-spa-router": "^2.1.0"

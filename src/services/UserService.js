@@ -3,14 +3,13 @@ import {JWTAuthStrategy, SimpleAuthStrategy} from '../logics/request/strategy';
 import {user} from '../logics/store/user';
 
 class UserServiceImpl {
-  signIn(authData) {
-    requestManager.post('', authData).then((response) => {
-      requestManager.setStrategy(new JWTAuthStrategy(response.data.tokens));
-      user.receive(response.data);
-    })
+  async signIn(authData) {
+    const response = await requestManager.post('/user/', authData);
+    requestManager.setStrategy(new JWTAuthStrategy(response.data));
+    user.receive(response.data);
   }
 
-  logout() {
+  async logout() {
     requestManager.setStrategy(new SimpleAuthStrategy());
     user.reset();
   }

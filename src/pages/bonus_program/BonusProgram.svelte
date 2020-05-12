@@ -28,7 +28,6 @@
 </script>
 
 <style lang="scss">
-
   .blocks {
     display: flex;
   }

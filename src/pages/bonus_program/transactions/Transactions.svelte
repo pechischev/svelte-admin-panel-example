@@ -2,7 +2,7 @@
   import {TransactionService} from '../../../services/TransactionService';
   import {transactions} from '../../../logics/store';
 
-  TransactionService.fetchTransactions()
+    TransactionService.fetchTransactions()
 </script>
 
 <style>
@@ -10,8 +10,6 @@
     display: flex;
   }
 </style>
-
-{@debug $transactions}
 
 <div class="blocks">
   <table>

@@ -28,6 +28,7 @@
 
 <input
     class="text-field {className}"
-    placeholder="{placeholder}"
-    bind:value="{value}"
+    placeholder={placeholder}
+    bind:value={value}
+    {...$$restProps}
 />

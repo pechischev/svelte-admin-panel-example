@@ -1,28 +1,37 @@
 <script>
-  import Router from 'svelte-spa-router';
+  import Router, {wrap, replace} from 'svelte-spa-router';
   import {Header, Navbar} from './layouts';
-  import {Company, Shops, NotFound, BonusProgram} from './pages';
+  import {Company, Shops, NotFound, BonusProgram, Login} from './pages';
   import {AddShop, EditShop} from './pages/shops';
-  import {onMount} from 'svelte';
   import {CompanyService} from './services';
+  import {user} from './logics/store';
 
   const routes = {
-    '/company': Company,
-    '/bonus_program': BonusProgram,
-    '/shops': Shops,
-    '/shops/create': AddShop,
-    '/shops/:id': EditShop,
-    '*': NotFound,
+    '/login': Login,
+    '/company': wrap(Company, null, () => user.isAuthorized()),
+    '/bonus_program': wrap(BonusProgram, null, () => user.isAuthorized()),
+    '/shops': wrap(Shops, null, () => user.isAuthorized()),
+    '/shops/create': wrap(AddShop, null, () => user.isAuthorized()),
+    '/shops/:id': wrap(EditShop, null, () => user.isAuthorized()),
+    '/*': NotFound,
   };
 
-  onMount(() => {
-    CompanyService.fetchCompany();
-    CompanyService.fetchShops();
-  })
+  CompanyService.fetchCompany();
+
+  function conditionsFailed() {
+    replace('/login');
+  }
+
+  if (!location.hash || !!location.hash.match(/#\//) ) {
+    replace('/company');
+  }
+
 </script>
 
 <Header/>
 <main class="wrap">
-  <Navbar/>
-  <Router {routes}/>
+  {#if user.isAuthorized()}
+    <Navbar/>
+  {/if}
+  <Router {routes} on:conditionsFailed={conditionsFailed}/>
 </main>

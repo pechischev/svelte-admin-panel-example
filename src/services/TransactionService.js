@@ -1,14 +1,18 @@
+import {requestManager} from '../logics/request';
+import {transactions as transactionsStore} from '../logics/store';
+
 class TransactionServiceImpl {
-  fetchBalance() {
+  async fetchBalance() {
 
   }
 
-  refuelAccount() {
+  async refuelAccount() {
 
   }
 
-  fetchTransactions(filters = {}) {
-
+  async fetchTransactions(filters = {}) {
+    const response = await requestManager.get('/transactions/');
+    transactionsStore.receiveTransactions(response.data);
   }
 }
 

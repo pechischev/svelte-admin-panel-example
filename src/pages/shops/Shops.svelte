@@ -1,7 +1,10 @@
 <script>
   import {BlockTitle} from '../../components/block-title';
+  import {CompanyService} from '../../services';
   import {AddShopCard, InfoShopCard} from './parts';
   import {shops} from '../../logics/store';
+
+  CompanyService.fetchShops()
 
 </script>
 

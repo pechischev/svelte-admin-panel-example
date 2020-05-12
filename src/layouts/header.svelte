@@ -1,6 +1,6 @@
 <script>
   import TopAppBar, {Row, Section, Title} from '@smui/top-app-bar';
-  import {company as companyStore} from '../logics/store';
+  import {company as companyStore, user} from '../logics/store';
 </script>
 
 <TopAppBar variant="static" color="primary">
@@ -8,8 +8,10 @@
     <Section>
       <div>иконка</div>
     </Section>
-    <Section align="end" toolbar>
-      <Title>{$companyStore.name}</Title>
-    </Section>
+    {#if user.isAuthorized()}
+      <Section align="end" toolbar>
+        <Title>{$companyStore.name}</Title>
+      </Section>
+    {/if}
   </Row>
 </TopAppBar>

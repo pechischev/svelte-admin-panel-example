@@ -1,9 +1,10 @@
 import {companyMock} from './company';
 import {shopsMock} from './shops';
+import {transactionsMock} from './transactions';
 
 
 export const mockRequests = {
-  company: (url, { data, method } = {}) => {
+  company: (url, {data, method} = {}) => {
     if (/\/company\/\d/.test(url)) {
       return data;
     }
@@ -14,7 +15,7 @@ export const mockRequests = {
 
     return null;
   },
-  shops: (url, { data, method } = {}) => {
+  shops: (url, {data, method} = {}) => {
     if (/\/shops\/\d/.test(url)) {
       return data;
     }
@@ -27,6 +28,13 @@ export const mockRequests = {
       };
     }
 
+    return null;
+  },
+  transaction: (url, {data, method} = {}) => {
+    if (/\/transactions\//.test(url)) {
+
+      return transactionsMock;
+    }
     return null;
   },
 };

@@ -8,4 +8,4 @@ export const user = {
   reset: () => set({}),
 };
 
-export const isAuthorized = derived(user, ({accessToken, refreshToken}) => true/*accessToken && refreshToken*/);
+export const isAuthorized = derived(user, ({accessToken, refreshToken}) => accessToken && refreshToken);

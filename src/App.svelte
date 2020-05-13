@@ -3,27 +3,26 @@
   import {Header, Navbar} from './layouts';
   import {Company, Shops, NotFound, BonusProgram, Login} from './pages';
   import {AddShop, EditShop} from './pages/shops';
-  import {CompanyService} from './services';
-  import {isAuthorized} from './logics/store';
-  import { get } from "svelte/store";
+  import {CompanyService, UserService} from './services';
 
   const routes = {
     '/login': Login,
-    '/company': wrap(Company, null, () => get(isAuthorized)),
-    '/bonus_program': wrap(BonusProgram, null, () => get(isAuthorized)),
-    '/shops': wrap(Shops, null, () => get(isAuthorized)),
-    '/shops/create': wrap(AddShop, null, () => get(isAuthorized)),
-    '/shops/:id': wrap(EditShop, null, () => get(isAuthorized)),
+    '/company': wrap(Company, null, () => UserService.isAuthorized()),
+    '/bonus_program': wrap(BonusProgram, null, () => UserService.isAuthorized()),
+    '/shops': wrap(Shops, null, () => UserService.isAuthorized()),
+    '/shops/create': wrap(AddShop, null, () => UserService.isAuthorized()),
+    '/shops/:id': wrap(EditShop, null, () => UserService.isAuthorized()),
     '/*': NotFound,
   };
 
   CompanyService.fetchCompany();
+  UserService.fetchUser();
 
   function conditionsFailed() {
     replace('/login');
   }
 
-  if (!location.hash || !!location.hash.match(/#\//) ) {
+  if (!location.hash || !!location.hash.match(/^#\/$/) ) {
     replace('/company');
   }
 
@@ -31,7 +30,7 @@
 
 <Header/>
 <main class="wrap">
-  {#if $isAuthorized}
+  {#if UserService.isAuthorized()}
     <Navbar/>
   {/if}
   <Router {routes} on:conditionsFailed={conditionsFailed}/>

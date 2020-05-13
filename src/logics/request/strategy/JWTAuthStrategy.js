@@ -1,7 +1,7 @@
 export class JWTAuthStrategy {
-  constructor(token) {
-    this._accessToken = token.accessToken;
-    this._refreshToken = token.refreshToken;
+  constructor(accessToken, refreshToken) {
+    this._accessToken = accessToken;
+    this._refreshToken = refreshToken;
   }
 
   getAuthData() {

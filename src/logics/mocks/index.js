@@ -1,6 +1,7 @@
 import {companyMock} from './company';
 import {shopsMock} from './shops';
 import {transactionsMock} from './transactions';
+import { userMock } from "./user";
 
 
 export const mockRequests = {
@@ -37,4 +38,10 @@ export const mockRequests = {
     }
     return null;
   },
+  user: (url) => {
+    if (/\/user\//.test(url)) {
+      return userMock;
+    }
+    return null;
+  }
 };

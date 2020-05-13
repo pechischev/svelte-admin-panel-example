@@ -8,6 +8,7 @@
   export let text = '';
   export let active = false;
   export let outlined = false;
+  export let right = false;
 
 </script>
 
@@ -41,6 +42,10 @@
   .button_outlined {
     border-radius: 24px;
   }
+
+    .button_right {
+        margin-right: 0;
+    }
 </style>
 
 <button
@@ -49,6 +54,7 @@
     class:button_outlined={outlined}
     class:button_active={active}
     class:button_disabled={disabled}
+    class:button_right={right}
     on:click={() => dispatch('click')}
     type={type}
 >

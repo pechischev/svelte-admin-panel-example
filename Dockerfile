@@ -2,7 +2,7 @@ FROM node:14
 
 WORKDIR /usr/src/app
 
-RUN apt update && apt install -y python3 python3-pip
+RUN apt update && apt install -y python3
 
 COPY public /usr/src/app/public
 COPY package.json /usr/src/app

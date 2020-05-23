@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
       - name: Copy env
         uses: canastro/copy-file-action@master
         with:
-          source: "env/prod.env"
+          source: "env/staging.env"
           target: ".env"
 
       - name: Install libraries

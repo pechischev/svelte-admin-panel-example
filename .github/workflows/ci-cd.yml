@@ -50,7 +50,6 @@ jobs:
 
       - name: Deploy app
         run: |
-          echo -e "\n${HOST_IP}" >> ./deploy/invetory.staging
           echo "$PRIVATE_KEY" >> ./deploy/private-key.txt
           chmod 400 ./deploy/private-key.txt
           docker build . --file Dockerfile.deploy --build-arg "$env1 $env2 $env3 $env4 $env5 $env6 $env7 $env8"

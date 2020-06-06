@@ -21,7 +21,7 @@ ANSIBLE_EXTRA_VARS=\
  docker_registry_pass=${DOCKER_REGISTRY_PASS}\
 "
 ansible-playbook \
-  --inventory "inventory.${ENV}" "playbook.${ENV}.yml" \
+  --inventory ./inventory.${ENV} ./playbook.${ENV}.yml \
   --private-key ./private-key.txt \
   --user admin \
   --extra-vars "${ANSIBLE_EXTRA_VARS}" \

@@ -18,35 +18,35 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Copy env
-        uses: canastro/copy-file-action@master
-        with:
-          source: "env/staging.env"
-          target: ".env"
-
-      - name: Install libraries
-        run: npm i
-
-      - name: Build application
-        run: npm run build
-
-      - name: Build image and push to docker registry
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ${{ secrets.DOCKER_IMAGE }}
-          registry: cr.yandex
-          tags: latest
-
-      - name: Build image and push to docker registry
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ${{ secrets.DOCKER_IMAGE }}
-          registry: cr.yandex
-          tags: latest
+#      - name: Copy env
+#        uses: canastro/copy-file-action@master
+#        with:
+#          source: "env/staging.env"
+#          target: ".env"
+#
+#      - name: Install libraries
+#        run: npm i
+#
+#      - name: Build application
+#        run: npm run build
+#
+#      - name: Build image and push to docker registry
+#        uses: docker/build-push-action@v1
+#        with:
+#          username: ${{ secrets.DOCKER_USERNAME }}
+#          password: ${{ secrets.DOCKER_PASSWORD }}
+#          repository: ${{ secrets.DOCKER_IMAGE }}
+#          registry: cr.yandex
+#          tags: latest
+#
+#      - name: Build image and push to docker registry
+#        uses: docker/build-push-action@v1
+#        with:
+#          username: ${{ secrets.DOCKER_USERNAME }}
+#          password: ${{ secrets.DOCKER_PASSWORD }}
+#          repository: ${{ secrets.DOCKER_IMAGE }}
+#          registry: cr.yandex
+#          tags: latest
 
       - name: Deploy app
         run: |

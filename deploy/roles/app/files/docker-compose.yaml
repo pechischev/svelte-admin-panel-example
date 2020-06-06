@@ -9,7 +9,7 @@ services:
       - "traefik.backend=frontend"
       - "traefik.frontend.rule=Host:${HOST_IP}"
       - "traefik.port=5000"
-      - "traefik.docker.network=traefik_proxy"
+      - "traefik.docker.network=proxy"
     networks:
       - admin-panel
       - traefik

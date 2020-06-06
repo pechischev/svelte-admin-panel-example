@@ -1,12 +1,13 @@
 <script>
   import TopAppBar, {Row, Section, Title} from '@smui/top-app-bar';
   import {company as companyStore, isAuthorized} from '../logics/store';
+  import {Logo} from '../components/icons';
 </script>
 
 <TopAppBar variant="static" color="primary">
   <Row class="wrap">
     <Section>
-      <div>иконка</div>
+      <Logo/>
     </Section>
     {#if $isAuthorized}
       <Section align="end" toolbar>

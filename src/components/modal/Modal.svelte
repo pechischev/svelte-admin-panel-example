@@ -1,40 +1,28 @@
 <script>
-    import { createEventDispatcher, onDestroy } from 'svelte';
+  import {createEventDispatcher, onDestroy} from 'svelte';
 
-    const dispatch = createEventDispatcher();
-    const close = () => dispatch('close');
+  const dispatch = createEventDispatcher();
+  const close = () => dispatch('close');
 
-    let modal;
+  let modal;
 
-    const handle_keydown = e => {
-        if (e.key === 'Escape') {
-            close();
-            return;
-        }
+  export let title;
 
-        if (e.key === 'Tab') {
-            // trap focus
-            const nodes = modal.querySelectorAll('*');
-            const tabbable = Array.from(nodes).filter(n => n.tabIndex >= 0);
-
-            let index = tabbable.indexOf(document.activeElement);
-            if (index === -1 && e.shiftKey) index = 0;
-
-            index += tabbable.length + (e.shiftKey ? -1 : 1);
-            index %= tabbable.length;
-
-            tabbable[index].focus();
-            e.preventDefault();
-        }
-    };
-
-    const previously_focused = typeof document !== 'undefined' && document.activeElement;
-
-    if (previously_focused) {
-        onDestroy(() => {
-            previously_focused.focus();
-        });
+  const handle_keydown = e => {
+    switch (e.key) {
+      case 'Escape':
+        close();
+        break;
     }
+  };
+
+  const previously_focused = typeof document !== 'undefined' && document.activeElement;
+
+  if (previously_focused) {
+    onDestroy(() => {
+      previously_focused.focus();
+    });
+  }
 </script>
 
 <svelte:window on:keydown={handle_keydown}/>
@@ -42,40 +30,46 @@
 <div class="modal-background" on:click={close}></div>
 
 <div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
-    <slot name="header"></slot>
-    <hr>
-    <slot></slot>
-    <hr>
-
-    <!-- svelte-ignore a11y-autofocus -->
-    <button autofocus on:click={close}>close modal</button>
+  {#if title}
+    <div class="modal__title">{title}</div>
+  {/if}
+  <slot/>
+  <div class="modal__buttons">
+    <slot name="buttons" close={close}/>
+  </div>
 </div>
 
-<style>
-    .modal-background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.3);
-    }
+<style lang="scss">
+  .modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+  }
 
-    .modal {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: calc(100vw - 4em);
-        max-width: 32em;
-        max-height: calc(100vh - 4em);
-        overflow: auto;
-        transform: translate(-50%,-50%);
-        padding: 1em;
-        border-radius: 0.2em;
-        background: white;
-    }
+  .modal {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    width: calc(100vw - 4em);
+    max-width: 32em;
+    max-height: calc(100vh - 4em);
+    overflow: auto;
+    transform: translate(-50%, -20%);
+    padding: 1.5em;
+    background: var(--white);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    text-align: center;
+  }
 
-    button {
-        display: block;
-    }
+  .modal__title {
+    font: bold 24px/28px "Roboto", sans-serif;
+  }
+
+  .modal__buttons {
+    display: flex;
+    justify-content: center;
+  }
 </style>

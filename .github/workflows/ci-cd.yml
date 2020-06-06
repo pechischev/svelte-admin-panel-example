@@ -48,15 +48,13 @@ jobs:
       #     registry: cr.yandex
       #     tags: latest
 
-      - name: "Prepare SSH key and known hosts"
+      - name: Prepare SSH key and known hosts
         run: |
           mkdir -p ~/.ssh
-          echo "$PRIVATE_KEY" > ~/.ssh/id_rsa
+          echo "${{ secrets.STAGING_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           ssh-keyscan git.eu.s5y.io >> ~/.ssh/known_hosts
-        env:
-          PRIVATE_KEY: "${{ secrets.STAGING_PRIVATE_KEY }}"
 
       - name: Deploy app
         run: |

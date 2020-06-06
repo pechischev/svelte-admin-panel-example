@@ -49,13 +49,16 @@ jobs:
       #     tags: latest
 
       - name: Deploy app
-        run: docker build . --file Dockerfile.deploy --build-arg "$env1 $env2 $env3 $env4 $env5 $env6 $env7 $env8"
+        run: |
+          echo "$HOST_IP" >> ./deploy/invetory.staging
+          docker build . --file Dockerfile.deploy --build-arg "$env1 $env2 $env3 $env4 $env5 $env6 $env7 $env8"
         env:
           env1: "ENV=staging"
-          env2: "SSH_PRIVATE_KEY=${{ secrets.DOCKER_USERNAME }}"
-          env3: "HOST_IP=${{ secrets.DOCKER_USERNAME }}"
+          env2: "SSH_PRIVATE_KEY=${{ secrets.STAGING_PRIVATE_KEY }}"
+          env3: "HOST_IP=${{ secrets.STAGING_PRIVATE_IP }}"
           env4: "DOCKER_IMAGE=${{ secrets.DOCKER_IMAGE }}"
           env5: "BUILD_VERSION=latest"
           env6: "DOCKER_REGISTRY=cr.yandex"
           env7: "DOCKER_REGISTRY_USER=${{ secrets.DOCKER_USERNAME }}"
           env8: "DOCKER_REGISTRY_PASS=${{ secrets.DOCKER_PASSWORD }}"
+          HOST_IP: "${{ secrets.STAGING_PRIVATE_IP }}"

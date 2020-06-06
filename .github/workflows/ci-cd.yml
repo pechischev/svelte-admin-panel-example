@@ -58,11 +58,11 @@ jobs:
           ./deploy.sh $ENV $HOST_IP $DOCKER_IMAGE $BUILD_VERSION $DOCKER_REGISTRY $DOCKER_REGISTRY_USER $DOCKER_REGISTRY_PASS
 
         env:
-          ENV: "ENV=staging"
+          ENV: "staging"
           HOST_IP: "${{ secrets.STAGING_IP }}"
-          DOCKER_IMAGE: "DOCKER_IMAGE=${{ secrets.DOCKER_IMAGE }}"
-          BUILD_VERSION: "BUILD_VERSION=latest"
-          DOCKER_REGISTRY: "DOCKER_REGISTRY=cr.yandex"
-          DOCKER_REGISTRY_USER: "DOCKER_REGISTRY_USER=${{ secrets.DOCKER_USERNAME }}"
-          DOCKER_REGISTRY_PASS: "DOCKER_REGISTRY_PASS=${{ secrets.DOCKER_PASSWORD }}"
+          DOCKER_IMAGE: "${{ secrets.DOCKER_IMAGE }}"
+          BUILD_VERSION: "latest"
+          DOCKER_REGISTRY: "cr.yandex"
+          DOCKER_REGISTRY_USER: "${{ secrets.DOCKER_USERNAME }}"
+          DOCKER_REGISTRY_PASS: "${{ secrets.DOCKER_PASSWORD }}"
           PRIVATE_KEY: "${{ secrets.STAGING_PRIVATE_KEY }}"

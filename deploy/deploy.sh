@@ -20,14 +20,6 @@ ANSIBLE_EXTRA_VARS=\
  docker_registry_pass=${DOCKER_REGISTRY_PASS}\
 "
 
-echo "HOST_IP ${HOST_IP}"
-echo "DOCKER_IMAGE ${DOCKER_IMAGE}"
-echo "BUILD_VERSION ${BUILD_VERSION}"
-echo "DOCKER_REGISTRY ${DOCKER_REGISTRY}"
-echo "DOCKER_REGISTRY_USER ${DOCKER_REGISTRY_USER}"
-echo "DOCKER_REGISTRY_PASS ${DOCKER_REGISTRY_PASS}"
-cat ./private-key.txt
-
 ansible-playbook \
   --inventory ./inventory.host ./playbook.${ENV}.yml \
   --private-key ./private-key.txt \

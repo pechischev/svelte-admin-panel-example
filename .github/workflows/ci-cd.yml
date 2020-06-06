@@ -53,15 +53,14 @@ jobs:
           echo "$PRIVATE_KEY" >> ./deploy/private-key.txt
           cat ./deploy/private-key.txt
           chmod 400 ./deploy/private-key.txt
-          docker build . --file Dockerfile.deploy --build-arg "$env1 $env2 $env3 $env4 $env5 $env6 $env7 $env8"
+          docker build . --file Dockerfile.deploy --build-arg "$env1 $env2 $env3 $env4 $env5 $env6 $env7"
         env:
           env1: "ENV=staging"
-          env2: "SSH_PRIVATE_KEY=${{ secrets.STAGING_PRIVATE_KEY }}"
-          env3: "HOST_IP=${{ secrets.STAGING_IP }}"
-          env4: "DOCKER_IMAGE=${{ secrets.DOCKER_IMAGE }}"
-          env5: "BUILD_VERSION=latest"
-          env6: "DOCKER_REGISTRY=cr.yandex"
-          env7: "DOCKER_REGISTRY_USER=${{ secrets.DOCKER_USERNAME }}"
-          env8: "DOCKER_REGISTRY_PASS=${{ secrets.DOCKER_PASSWORD }}"
+          env2: "HOST_IP=${{ secrets.STAGING_IP }}"
+          env3: "DOCKER_IMAGE=${{ secrets.DOCKER_IMAGE }}"
+          env4: "BUILD_VERSION=latest"
+          env5: "DOCKER_REGISTRY=cr.yandex"
+          env6: "DOCKER_REGISTRY_USER=${{ secrets.DOCKER_USERNAME }}"
+          env7: "DOCKER_REGISTRY_PASS=${{ secrets.DOCKER_PASSWORD }}"
           HOST_IP: "${{ secrets.STAGING_IP }}"
           PRIVATE_KEY: "${{ secrets.STAGING_PRIVATE_KEY }}"

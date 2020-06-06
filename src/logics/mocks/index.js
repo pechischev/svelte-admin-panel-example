@@ -1,8 +1,8 @@
 import {companyMock} from './company';
 import {shopsMock} from './shops';
 import {transactionsMock} from './transactions';
-import { userMock } from "./user";
-
+import {userMock} from "./user";
+import {shops} from '../store';
 
 export const mockRequests = {
   company: (url, {data, method} = {}) => {
@@ -23,7 +23,12 @@ export const mockRequests = {
 
     if (/\/shops\//.test(url)) {
 
-      return method === 'get' ? shopsMock : {
+      if (method === 'get') {
+        const currentShops = shops.getShops();
+        return currentShops.length ? currentShops : shopsMock;
+      }
+
+      return {
         ...data,
         id: Date.now(),
       };

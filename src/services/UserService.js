@@ -8,7 +8,7 @@ class UserServiceImpl {
     const {accessToken, refreshToken, ...rest} = response.data;
     requestManager.setStrategy(new JWTAuthStrategy(accessToken, refreshToken));
     localStorage.setItem('jwt-tokens', JSON.stringify({accessToken, refreshToken}));
-    user.receive(rest);
+    user.receive({...rest, authorized: true });
   }
 
   async fetchUser() {
@@ -23,11 +23,6 @@ class UserServiceImpl {
   async logout() {
     requestManager.setStrategy(new SimpleAuthStrategy());
     user.reset();
-  }
-
-  isAuthorized() {
-    // TODO: temp
-    return !!localStorage.getItem('jwt-tokens');
   }
 }
 

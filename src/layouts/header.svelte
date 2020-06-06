@@ -1,7 +1,6 @@
 <script>
   import TopAppBar, {Row, Section, Title} from '@smui/top-app-bar';
-  import {company as companyStore} from '../logics/store';
-  import {UserService} from '../services';
+  import {company as companyStore, isAuthorized} from '../logics/store';
 </script>
 
 <TopAppBar variant="static" color="primary">
@@ -9,7 +8,7 @@
     <Section>
       <div>иконка</div>
     </Section>
-    {#if UserService.isAuthorized()}
+    {#if $isAuthorized}
       <Section align="end" toolbar>
         <Title>{$companyStore.name}</Title>
       </Section>

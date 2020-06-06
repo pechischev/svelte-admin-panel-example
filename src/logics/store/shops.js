@@ -17,5 +17,9 @@ export const shops = {
   getShop: (id) => {
     const items = get(shops);
     return items.find((shop) => shop.id === id);
+  },
+
+  getShops: () => {
+    return get(shops) || []
   }
 };

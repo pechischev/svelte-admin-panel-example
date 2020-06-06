@@ -1,0 +1,34 @@
+---
+- pip:
+    executable: pip3
+    name:
+      - docker
+      - docker-compose
+
+- name: Ensures /tmp/easy-app dir exists
+  file: path=/tmp/easy-app state=directory
+
+- name: Copy docker-compose file to remote server
+  copy:
+    src: docker-compose.yml
+    dest: /tmp/easy-app/docker-compose.yml
+
+- name: Sign in to Docker Registry
+  docker_login:
+    registry: "{{ docker_registry }}"
+    username: "{{ docker_registry_user }}"
+    password: "{{ docker_registry_pass }}"
+    reauthorize: yes
+
+- name: Docker compose up
+  environment:
+    DOCKER_IMAGE: "{{ docker_image }}"
+    BUILD_VERSION: "{{ build_version }}"
+    HOST_IP: "{{ host_ip }}"
+  docker_compose:
+    state: present
+    project_name: easy
+    project_src: /tmp/easy-app
+
+- name: Clean old docker images
+  shell: docker image prune -a -f

@@ -3,13 +3,13 @@ version: "3"
 services:
 
   frontend:
-    image: "cr.yandex/${DOCKER_IMAGE}:latest"
+    image: "cr.yandex/${DOCKER_IMAGE}:${BUILD_VERSION}"
     labels:
       - "traefik.enable=true"
       - "traefik.backend=frontend"
       - "traefik.frontend.rule=Host:${HOST_IP}"
       - "traefik.port=5000"
-      - "traefik.docker.network=proxy"
+      - "traefik.docker.network=traefik_proxy"
     networks:
       - admin-panel
       - traefik

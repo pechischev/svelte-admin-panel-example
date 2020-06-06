@@ -50,10 +50,9 @@ jobs:
 
       - name: Deploy app
         run: |
-          echo "$HOST_IP" >> ./deploy/invetory.staging
+          echo "\n${HOST_IP}" >> ./deploy/invetory.staging
           cat ./deploy/invetory.staging
-          echo "$PRIVATE_KEY" >> ./deploy/private-key.txt
-          cat ./deploy/private-key.txt
+
         env:
           env1: "ENV=staging"
           env2: "SSH_PRIVATE_KEY=${{ secrets.STAGING_PRIVATE_KEY }}"

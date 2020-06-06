@@ -50,16 +50,19 @@ jobs:
 
       - name: Deploy app
         run: |
-          echo "$PRIVATE_KEY" >> ./deploy/private-key.txt
-          chmod 600 ./deploy/private-key.txt
-          docker build . --file Dockerfile.deploy --build-arg "$env1 $env2 $env3 $env4 $env5 $env6 $env7"
+          cd ./deploy
+
+          echo "$PRIVATE_KEY" >> ./private-key.txt
+          chmod 600 ./private-key.txt
+
+          ./deploy.sh $ENV $HOST_IP $DOCKER_IMAGE $BUILD_VERSION $DOCKER_REGISTRY $DOCKER_REGISTRY_USER $DOCKER_REGISTRY_PASS
+
         env:
-          env1: "ENV=staging"
-          env2: "HOST_IP=${{ secrets.STAGING_IP }}"
-          env3: "DOCKER_IMAGE=${{ secrets.DOCKER_IMAGE }}"
-          env4: "BUILD_VERSION=latest"
-          env5: "DOCKER_REGISTRY=cr.yandex"
-          env6: "DOCKER_REGISTRY_USER=${{ secrets.DOCKER_USERNAME }}"
-          env7: "DOCKER_REGISTRY_PASS=${{ secrets.DOCKER_PASSWORD }}"
+          ENV: "ENV=staging"
           HOST_IP: "${{ secrets.STAGING_IP }}"
+          DOCKER_IMAGE: "DOCKER_IMAGE=${{ secrets.DOCKER_IMAGE }}"
+          BUILD_VERSION: "BUILD_VERSION=latest"
+          DOCKER_REGISTRY: "DOCKER_REGISTRY=cr.yandex"
+          DOCKER_REGISTRY_USER: "DOCKER_REGISTRY_USER=${{ secrets.DOCKER_USERNAME }}"
+          DOCKER_REGISTRY_PASS: "DOCKER_REGISTRY_PASS=${{ secrets.DOCKER_PASSWORD }}"
           PRIVATE_KEY: "${{ secrets.STAGING_PRIVATE_KEY }}"

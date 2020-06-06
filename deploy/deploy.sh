@@ -25,4 +25,4 @@ ansible-playbook \
   --private-key ./private-key.txt \
   --user admin \
   --extra-vars "${ANSIBLE_EXTRA_VARS}" \
-  -vvvv
+  -vv

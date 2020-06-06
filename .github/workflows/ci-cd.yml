@@ -18,46 +18,44 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-#      - name: Copy env
-#        uses: canastro/copy-file-action@master
-#        with:
-#          source: "env/staging.env"
-#          target: ".env"
-#
-#      - name: Install libraries
-#        run: npm i
-#
-#      - name: Build application
-#        run: npm run build
-#
-#      - name: Build image and push to docker registry
-#        uses: docker/build-push-action@v1
-#        with:
-#          username: ${{ secrets.DOCKER_USERNAME }}
-#          password: ${{ secrets.DOCKER_PASSWORD }}
-#          repository: ${{ secrets.DOCKER_IMAGE }}
-#          registry: cr.yandex
-#          tags: latest
-#
-#      - name: Build image and push to docker registry
-#        uses: docker/build-push-action@v1
-#        with:
-#          username: ${{ secrets.DOCKER_USERNAME }}
-#          password: ${{ secrets.DOCKER_PASSWORD }}
-#          repository: ${{ secrets.DOCKER_IMAGE }}
-#          registry: cr.yandex
-#          tags: latest
+      # - name: Copy env
+      #   uses: canastro/copy-file-action@master
+      #   with:
+      #     source: "env/staging.env"
+      #     target: ".env"
+      #
+      # - name: Install libraries
+      #   run: npm i
+      #
+      # - name: Build application
+      #   run: npm run build
+      #
+      # - name: Build image and push to docker registry
+      #   uses: docker/build-push-action@v1
+      #   with:
+      #     username: ${{ secrets.DOCKER_USERNAME }}
+      #     password: ${{ secrets.DOCKER_PASSWORD }}
+      #     repository: ${{ secrets.DOCKER_IMAGE }}
+      #     registry: cr.yandex
+      #     tags: latest
+      #
+      # - name: Build image and push to docker registry
+      #   uses: docker/build-push-action@v1
+      #   with:
+      #     username: ${{ secrets.DOCKER_USERNAME }}
+      #     password: ${{ secrets.DOCKER_PASSWORD }}
+      #     repository: ${{ secrets.DOCKER_IMAGE }}
+      #     registry: cr.yandex
+      #     tags: latest
 
       - name: Deploy app
-        run: |
-          docker build . \
-            --file Dockerfile.deploy \
-            --build-arg \
-              "ENV=staging" \
-              "SSH_PRIVATE_KEY=${{ secrets.DOCKER_USERNAME }}" \
-              "HOST_IP=${{ secrets.DOCKER_USERNAME }}" \
-              "DOCKER_IMAGE=${{ secrets.DOCKER_IMAGE }}" \
-              "BUILD_VERSION=latest" \
-              "DOCKER_REGISTRY=cr.yandex" \
-              "DOCKER_REGISTRY_USER=${{ secrets.DOCKER_USERNAME }}" \
-              "DOCKER_REGISTRY_PASS=${{ secrets.DOCKER_PASSWORD }}" \
+        run: docker build . --file Dockerfile.deploy --build-arg "$env1 $env2 $env3 $env4 $env5 $env6 $env7 $env8"
+        env:
+          - env1="ENV=staging"
+          - env2="SSH_PRIVATE_KEY=${{ secrets.DOCKER_USERNAME }}"
+          - env3="HOST_IP=${{ secrets.DOCKER_USERNAME }}"
+          - env4="DOCKER_IMAGE=${{ secrets.DOCKER_IMAGE }}"
+          - env5="BUILD_VERSION=latest"
+          - env6="DOCKER_REGISTRY=cr.yandex"
+          - env7="DOCKER_REGISTRY_USER=${{ secrets.DOCKER_USERNAME }}"
+          - env8="DOCKER_REGISTRY_PASS=${{ secrets.DOCKER_PASSWORD }}"

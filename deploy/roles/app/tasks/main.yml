@@ -26,6 +26,7 @@
     BUILD_VERSION: "{{ build_version }}"
     HOST_IP: "{{ host_ip }}"
   docker_compose:
+    recreate: always
     state: present
     project_name: easy
     project_src: /tmp/easy-app

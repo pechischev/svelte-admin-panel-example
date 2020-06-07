@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# Run playbook
-
 ENV=$1
 HOST_IP=$2
 DOCKER_IMAGE=$3
@@ -19,6 +17,8 @@ ANSIBLE_EXTRA_VARS=\
  docker_registry_user=${DOCKER_REGISTRY_USER}\
  docker_registry_pass=${DOCKER_REGISTRY_PASS}\
 "
+
+# Run playbook
 
 ansible-playbook \
   --inventory ./inventory.host ./playbook.${ENV}.yml \

@@ -2,7 +2,7 @@ name: CI/CD
 
 on:
   push:
-    branches: [ ops/dockerization ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -61,7 +61,6 @@ jobs:
           echo "$PRIVATE_KEY" >> ./private-key.txt
           chmod 600 ./private-key.txt
           ./deploy.sh $ENV $HOST_IP $DOCKER_IMAGE $BUILD_VERSION $DOCKER_REGISTRY $DOCKER_REGISTRY_USER $DOCKER_REGISTRY_PASS
-
         env:
           ENV: "staging"
           HOST_IP: "${{ secrets.STAGING_IP }}"

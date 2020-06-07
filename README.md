@@ -47,3 +47,11 @@ $ npm run build
 ```bash
 $ npm run start
 ```
+
+### Запуск в Docker
+
+Собрать продакшн-версию приложения, затем запустить команду
+
+```bash
+$ docker-compose up -d
+```

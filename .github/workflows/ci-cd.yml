@@ -53,7 +53,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.STAGING_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan "${{ secrets.STAGING_IP }}" >> ~/.ssh/known_hosts
+          ssh -o StrictHostKeyChecking=no admin@"${{ secrets.STAGING_IP }}" uptime
 
       - name: Deploy app
         run: |

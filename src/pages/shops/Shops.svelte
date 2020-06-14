@@ -4,7 +4,7 @@
   import {AddShopCard, InfoShopCard} from './parts';
   import {shops} from '../../logics/store';
 
-  CompanyService.fetchShops()
+  CompanyService.fetchMarketplaces()
 
 </script>
 

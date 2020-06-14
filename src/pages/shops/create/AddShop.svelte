@@ -5,7 +5,7 @@
   import {ShopForm} from "../parts";
 
   function onCreate(event) {
-    CompanyService.createShop(event.detail).then(() => push('/shops/'));
+    CompanyService.createMarketplace(event.detail).then(() => push('/shops/'));
   }
 </script>
 

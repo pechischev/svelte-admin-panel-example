@@ -10,14 +10,19 @@
 <ShopCard on:redirect={() => push("/shops/" + shop.id)}>
   <div class="shop-info">
     <DefaultLogo />
-    <p class="shop-info__title">{shop.title}</p>
-    <p class="shop-info__address">{getAddress(shop)}</p>
-    <div class="shop-info__rate rate">
-      <Star />
-      <p class="rate__number">{shop.rate || 0}</p>
-      <p class="rate__text">рейтинг</p>
-    </div>
-    <p class="shop-info__category">{shop.category}</p>
+    <p class="shop-info__title">{shop.name}</p>
+    <p class="shop-info__address">{getAddress(shop.address)}</p>
+
+    {#if shop.rate}
+      <div class="shop-info__rate rate">
+        <Star />
+        <p class="rate__number">{shop.rate || 0}</p>
+        <p class="rate__text">рейтинг</p>
+      </div>
+    {/if}
+    {#if shop.category}
+      <p class="shop-info__category">{shop.category}</p>
+    {/if}
   </div>
 </ShopCard>
 

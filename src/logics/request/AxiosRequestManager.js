@@ -50,7 +50,7 @@ export class AxiosRequestManager {
   }
 
   getConfig() {
-    const authData = !!this._strategy ? this._strategy.getAuthData() : {};
+    const authData = this._strategy.getAuthData();
     return {
       baseURL: this._baseUrl,
       headers: {

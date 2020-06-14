@@ -1,31 +1,35 @@
 import {companyMock} from './company';
-import {shopsMock} from './shops';
+import {marketplacesMock} from './marketplace';
 import {transactionsMock} from './transactions';
 import {userMock} from "./user";
 import {shops} from '../store';
+import {singinMock} from './signin';
 
 export const mockRequests = {
-  company: (url, {data, method} = {}) => {
-    if (/\/company\/\d/.test(url)) {
+  signin: (url, {data, method} = {}) => singinMock,
+  signout: (url, {data, method} = {}) => null,
+
+  companies: (url, {data, method} = {}) => {
+    if (/\/companies\/\d/.test(url)) {
       return data;
     }
 
-    if (/\/company\//.test(url)) {
+    if (/\/companies\//.test(url)) {
       return companyMock;
     }
 
     return null;
   },
-  shops: (url, {data, method} = {}) => {
-    if (/\/shops\/\d/.test(url)) {
+  marketplaces: (url, {data, method} = {}) => {
+    if (/\/marketplaces\/\d/.test(url)) {
       return data;
     }
 
-    if (/\/shops\//.test(url)) {
+    if (/\/marketplaces\//.test(url)) {
 
       if (method === 'get') {
         const currentShops = shops.getShops();
-        return currentShops.length ? currentShops : shopsMock;
+        return currentShops.length ? currentShops : marketplacesMock;
       }
 
       return {
@@ -36,15 +40,15 @@ export const mockRequests = {
 
     return null;
   },
-  transaction: (url, {data, method} = {}) => {
+  transactions: (url, {data, method} = {}) => {
     if (/\/transactions\//.test(url)) {
 
       return transactionsMock;
     }
     return null;
   },
-  user: (url) => {
-    if (/\/user\//.test(url)) {
+  users: (url) => {
+    if (/\/users\//.test(url)) {
       return userMock;
     }
     return null;

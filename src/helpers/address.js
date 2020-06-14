@@ -1,4 +1,4 @@
-export const getAddress = ({city, street, house}) => {
+export const getAddress = ({city, street, house_number}) => {
   const address = [];
   if (city) {
     address.push(`г. ${city}`);
@@ -6,8 +6,8 @@ export const getAddress = ({city, street, house}) => {
   if (street) {
     address.push(`ул. ${street}`);
   }
-  if (house) {
-    address.push(`д. ${house}`);
+  if (house_number) {
+    address.push(`д. ${house_number}`);
   }
 
   return address.join(', ');

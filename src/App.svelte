@@ -3,7 +3,7 @@
   import {Header, Navbar} from './layouts';
   import {Company, Shops, NotFound, BonusProgram, Login} from './pages';
   import {AddShop, EditShop} from './pages/shops';
-  import {CompanyService, UserService} from './services';
+  import {UserService} from './services';
   import {get} from 'svelte/store';
   import {isAuthorized} from './logics/store';
 
@@ -24,7 +24,6 @@
       replace('/company');
     }
   });
-  CompanyService.fetchCompany();
 
   function conditionsFailed() {
     replace('/login');

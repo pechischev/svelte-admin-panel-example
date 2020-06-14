@@ -39,7 +39,7 @@
 
 <div class="wrapper">
   <div class="auth-block">
-    <TextField className="line" placeholder="Логин" bind:value={data.login}/>
+    <TextField className="line" placeholder="Логин" bind:value={data.phone_number}/>
     <div class="margin"></div>
     <TextField className="line" placeholder="Пароль" type="password" bind:value={data.password}/>
     <div class="auth-button">

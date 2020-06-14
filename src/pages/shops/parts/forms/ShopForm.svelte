@@ -9,7 +9,7 @@
 
   const dispatch = createEventDispatcher();
 
-  export let shop = {};
+  export let shop = { address: {} };
 
   function handleSave() {
     dispatch('onSave', shop)
@@ -51,15 +51,21 @@
 
 <div class="block">
   <Label text="Название магазина"/>
-  <TextField className="line" placeholder="Например: “Незабудка”" bind:value={shop.title}/>
+  <TextField className="line" placeholder="Например: “Незабудка”" bind:value={shop.name}/>
 </div>
 
 <div class="block">
-  <Label text="Фактический адрес"/>
+  <Label text="Адрес"/>
   <div class="blocks">
-    <TextField className="line-1_2" placeholder="Город" bind:value={shop.city}/>
-    <TextField className="line-1_3" placeholder="Улица" bind:value={shop.street}/>
-    <TextField className="line-1_6" placeholder="Дом" bind:value={shop.house}/>
+    <TextField className="line-1_2" placeholder="Город" bind:value={shop.address.city}/>
+    <TextField className="line-1_3" placeholder="Улица" bind:value={shop.address.street}/>
+    <TextField className="line-1_6" placeholder="Дом" bind:value={shop.address.house_number}/>
+  </div>
+
+  <Label text="Координаты"/>
+  <div class="blocks">
+    <TextField className="line-1_3" placeholder="Ширина" bind:value={shop.address.location_lat}/>
+    <TextField className="line-1_6" placeholder="Долгота" bind:value={shop.address.location_lng}/>
   </div>
 </div>
 

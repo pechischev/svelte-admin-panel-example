@@ -1,23 +1,32 @@
 export const companyMock = {
   id: 1,
   name: 'Супер-Пупер компания',
-  phone: '+71234567890',
+  phone_number: '+71234567890',
   email: 'example@mail.com',
 
-  legal_postcode: '',
-  legal_city: 'Москва',
-  legal_street: '',
-  legal_house: '',
-  legal_office: '',
+  legal_address: {
+    city: 'Москва',
+    street: '',
+    postcode: '',
+    house_number: '',
+    apartment_number: ''
+  },
 
-  fact_postcode: '',
-  fact_city: '',
-  fact_street: '',
-  fact_house: '',
-  fact_office: '',
+  factual_address: {
+    city: 'Москва',
+    street: '',
+    postcode: '',
+    house_number: '',
+    apartment_number: ''
+  },
+
+  payment_account: {
+    id: 1,
+    amount: 100
+  },
 
   inn: '',
   kpp: '',
-  payment_account: '',
   ogrn: '',
+  refund_percent: 2,
 };

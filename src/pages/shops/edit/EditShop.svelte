@@ -15,11 +15,11 @@
   const shop = {...shopsStore.getShop(shopId)} || {};
 
   function onEdit(event) {
-    CompanyService.updateShop(event.detail).then(() => push('/shops/'));
+    CompanyService.updateMarketplace(event.detail).then(() => push('/shops/'));
   }
 
   function onRemoveShop() {
-    CompanyService.removeShop(shopId).then(() => push('/shops/'));
+    CompanyService.removeMarketplace(shopId).then(() => push('/shops/'));
   }
 
 </script>
@@ -44,7 +44,7 @@
   }
 </style>
 
-<BreadCrumbs path={shop.title}>
+<BreadCrumbs path={shop.name}>
   <div>
     <Lock />
     <span on:click={() => onRemoveShop()}>
